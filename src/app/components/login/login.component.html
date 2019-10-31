@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="col-md-6 mx-auto">        
+    <div class="card">
+        <div class="card-body">
+            <h1 class="text-center pb-4 pt-3">
+                <span class="text-primary">
+                    <i class="fa fa-lock"></i>Client Panel
+                </span> Login
+            </h1>
+            <form #clientForm="ngForm" (ngSubmit)="onSubmit(clientForm)">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email"
+                    class="form-control"
+                    name="email"
+                    #clientemail="ngModel"
+                    [ngClass]="{'is-invalid':clientemail.errors && clientemail.touched}"
+                    [(ngModel)]= "email"
+                    pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                    required>
+                    <div [hidden]="!clientemail.errors?.required"
+                    class="invalid-feedback">
+                        Email Is Required:
+                    </div>
+                    <div [hidden]="!clientemail.errors?.pattern"
+                    class="invalid-feedback">
+                        Please Enter correct email:
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password"
+                    class="form-control"
+                    name="password"
+                    #clientpassword="ngModel"
+                    [ngClass]="{'is-invalid':clientpassword.errors && clientpassword.touched}"
+                    [(ngModel)]= "password"
+                    minlength="6"
+                    required>
+                    <div [hidden]="!clientpassword.errors?.required"
+                    class="invalid-feedback">
+                        Password Is Required:
+                    </div>
+                    <div [hidden]="!clientpassword.errors?.minlength"
+                    class="invalid-feedback">
+                        Must be at least 6 Characters:
+                    </div>
+                </div>
+                
+                <input type="submit" class="btn btn-primary btn-block" value="Login">
+            </form>
+        </div>
+    </div>
+    </div>
+</div>
